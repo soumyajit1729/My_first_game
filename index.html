@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LET'S PLAY</title>
+    <link rel="stylesheet" href="stylegame.css"/>
+    <style type="text/css">
+    	
+    	#count{
+    		position: absolute;
+    		float: right;
+    		height: 20px;
+    		width: 170px;
+    		background-color: yellow;
+    		color: black;
+    		padding: 10px;
+    		top: 80px;
+    	}
+    	#sub{
+			width:75px;
+			background: rgba(0,0,0,0.5);
+			float: left;
+			height: 45px;
+			text-align: center;
+			padding-top: 30px;
+			border: solid;
+			border-radius: 10px;
+		}			
+        #main{
+			width:350px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+
+    </style>
+	<script type="text/javascript">
+		var g=0;
+		var x=10;
+		var y=10;
+		var b=0;
+		var i,j;
+		var a=["G","C","B","D","F","E","G","H","B","A","C","D","E","F","H","A"];
+		var p=["G","C","B","D","F","E","G","H","B","A","C","D","E","F","H","A"];
+		for (var i =0; i<=7; i++) {//to create a random set a[]
+			var c=Math.floor((Math.random()*16));
+			var d=Math.floor((Math.random()*16));
+			var e=a[c];
+			a[c]=p[c]=a[d];
+			a[d]=p[d]=e;
+		}
+		
+		function change(m){
+			if(a[m-1]!="s"){
+			document.getElementsByTagName('div')[m+1].style.background="rgba(0,0,0,0.3)";
+			document.getElementsByTagName('div')[m+1].innerHTML=a[m-1];
+			if ((x==10)&&(y==10)) {
+				x=1;
+				i=m-1;
+				a[i]="s";
+			} else if (y==10) {
+					j=m-1;
+					y=1;
+					if (b==7) {
+						document.getElementsByTagName('h1')[0].innerHTML="YOU WIN<br>Refresh to play again";
+						x=2;
+						y=2;
+						
+					}
+					a[i]=p[i]; 
+					g++;
+					document.getElementById('count').innerHTML="NO OF TURNS:"+g;
+				 } else if(y==1){
+					if ((a[i]!=a[j])&&((m-1)!=i)&&((m-1)!=j)) {
+					x=1;
+					y=10;					
+					goback(i+1);
+					goback(j+1);
+					//g++;
+					//document.getElementById('count').innerHTML="NO OF TURNS:"+g;
+					i=m-1;
+					a[i]="s";
+					} else {
+						if ((a[i]!=a[j])&&(((m-1)==i)||((m-1)==j))) {
+						x=10;
+					y=10;
+					goback(i+1);
+					goback(j+1);
+					//g++;
+					//document.getElementById('count').innerHTML="NO OF TURNS:"+g;
+					
+					}
+					else {
+						if ((a[i]==a[j])&&((m-1)!=i)&&((m-1)!=j)) {
+					a[i]=a[j]="s";	
+					x=1;
+					y=10;
+					i=m-1;
+					b++;
+					a[i]="s";
+					//g++;
+					//document.getElementById('count').innerHTML="NO OF TURNS:"+g;
+					} else {
+						if ((a[i]==a[j])&&(((m-1)==i)||((m-1)==j))) {
+						a[i]=a[j]="s";	
+					x=10;
+					y=10;
+					b++;
+					//g++;
+					//document.getElementById('count').innerHTML="NO OF TURNS:"+g;
+					}
+					}
+				}		
+				}
+			}
+		}
+		};
+		function goback(m){
+			document.getElementsByTagName('div')[m+1].style.background="rgba(0,0,0,0.5)";
+			document.getElementsByTagName('div')[m+1].innerHTML=""; 
+		};
+	</script>
+</head>
+<body id="body" style="background-image: linear-gradient(to right,#66ff66,#ffcc00);" text="black" >
+<div id="count">NO OF TURNS:  0</div>
+<div id="main">
+	<div id="sub" onclick="change(1)"></div>
+	<div id="sub" onclick="change(2)"></div>
+	<div id="sub" onclick="change(3)"></div>
+	<div id="sub" onclick="change(4)"></div>
+	<div id="sub" onclick="change(5)"></div>
+	<div id="sub" onclick="change(6)"></div>
+	<div id="sub" onclick="change(7)"></div>
+	<div id="sub" onclick="change(8)"></div>
+	<div id="sub" onclick="change(9)"></div>
+	<div id="sub" onclick="change(10)"></div>
+	<div id="sub" onclick="change(11)"></div>
+	<div id="sub" onclick="change(12)"></div>
+	<div id="sub" onclick="change(13)"></div>
+	<div id="sub" onclick="change(14)"></div>
+	<div id="sub" onclick="change(15)"></div>
+	<div id="sub" onclick="change(16)"></div>
+</div>
+<h1 align="center">match all the hidden letter-pairs</h1>
+</body>
+</html>
