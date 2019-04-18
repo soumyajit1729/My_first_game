@@ -6,3 +6,5 @@ open two box with same letter,if you can the boxes will remain opened.
 otherwise they will close automatically.
 thus you have to open all the 16 boxes to win the game.
 thank you and have fun with the game.
+
+the link for the game is: https://soumyajit1729.github.io/My_first_game/
